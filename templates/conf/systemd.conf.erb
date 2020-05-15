@@ -7,7 +7,7 @@
 <source>
   @type systemd
   @id in_systemd_kubelet
-  matches [{ "_SYSTEMD_UNIT": "kubelet.service" }]
+  matches [{"_SYSTEMD_UNIT": "k3s.service"}, {"_SYSTEMD_UNIT": "k3s-agent.service"}]
   <storage>
     @type local
     persistent true
@@ -19,7 +19,7 @@
   </entry>
 <% end %>
   read_from_head true
-  tag kubelet
+  tag k3s
 </source>
 
 # Logs from docker-systemd
@@ -39,25 +39,6 @@
 <% end %>
   read_from_head true
   tag docker.systemd
-</source>
-
-# Logs from systemd-journal for interesting services.
-<source>
-  @type systemd
-  @id in_systemd_bootkube
-  matches [{ "_SYSTEMD_UNIT": "bootkube.service" }]
-  <storage>
-    @type local
-    persistent true
-    path /var/log/fluentd-journald-bootkube-cursor.json
-  </storage>
-<% if target.start_with?("elasticsearch") %>
-  <entry>
-    fields_strip_underscores true
-  </entry>
-<% end %>
-  read_from_head true
-  tag bootkube
 </source>
 
 <% case target when "papertrail"%>
