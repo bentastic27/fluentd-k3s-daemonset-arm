@@ -10,7 +10,7 @@
 # It's still possible to build, tag and push images manually. Just use:
 #	make release-all
 
-IMAGE_NAME := fluent/fluentd-kubernetes
+IMAGE_NAME := bentastic27/fluentd-k3s-daemonset-arm
 ALL_IMAGES := \
 	v1.10/debian-elasticsearch7:v1.10.4-debian-elasticsearch7-1.0,v1.10-debian-elasticsearch7-1,v1-debian-elasticsearch \
 	v1.10/debian-elasticsearch6:v1.10.4-debian-elasticsearch6-1.0,v1.10-debian-elasticsearch6-1 \
